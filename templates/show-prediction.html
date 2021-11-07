@@ -1,0 +1,48 @@
+<!DOCTYPE html> 
+<head> 
+	<title> 
+		Lo-fi Result 
+	</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--<link rel="stylesheet" href="{{ url_for('static', filename='css/home1.css') }}">-->
+	<link rel="stylesheet" type="text/css" href="/static/css/home1.css">
+</head> 
+
+<body style="margin:0;"> 
+<!-- display the prediction  -->
+<div class="home">
+
+	<img src="/static/img/back.jpg" style="width:100%; height: 100vh;">
+
+	<div class="home1" >
+	<h1 style="color: mediumspringgreen;" > 
+		
+	</h1>
+    <h1 style="color: mediumspringgreen"> 
+		{{ prediction.prediction_key }}
+	</h1>
+         
+    <!--<form action="{{ url_for('home') }}">
+		<input type="submit" value="Get another prediction" style="font-size : 20px; width: 25%; height: 30px;"/>
+	</form>-->
+
+		 
+	
+	
+	<!-- button to invoke JS functions and link to show-prediction.html -->
+	<button style="color: mediumspringgreen; background:#ffffff;cursor: pointer;">
+	<a href="{{ url_for('home') }}" style="text-decoration: none;color: mediumspringgreen; ">Get another prediction</a>
+	</button>
+
+
+
+
+
+</div>
+<!-- link back to home.html for entering Spotify URL for another song  -->
+
+	
+</div>
+</body> 
+
+</html>					 

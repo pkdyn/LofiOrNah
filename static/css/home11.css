@@ -1,0 +1,89 @@
+
+body{
+  width: 100%;
+  height: 100%;
+}
+
+
+.home {
+  position: relative;
+  animation-name: home2;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+}
+@keyframes home2 { 
+  from{  opacity:0 } 
+  to{  opacity:1 }
+}
+
+
+/* Bottom right text */
+.home1 {
+  position: absolute;
+  bottom: 230px;
+  right: 150px;
+  
+  font-size: 50px;
+  text-align: center;
+  animation-name: home3;
+  animation-duration: 3s;
+  /*padding-left: 20px;
+  padding-right: 20px;*/
+}
+
+.home1 h1{
+  font-size: 50px;
+}
+.home1 p {
+  font-size: 20px;
+}
+.home1 p input{
+  font-size: 20px;
+  padding: 12px 20px;
+}
+
+.home1 button {
+  font-size: 20px;
+}
+
+@keyframes home3 { 
+  from{ bottom: 0px;right: 150;opacity:0 } 
+  to{ bottom:230px;right: 150;opacity:1 }
+}
+
+
+
+
+
+
+@media screen and (max-width: 600px) {
+  
+  body{
+    background-image: url("/static/img/3.jpg");
+    background-size: 100% 100vh;  
+  }
+  .home img{
+    opacity: 0;
+  }
+  .home1{
+    bottom: 270px;
+    right: 30px;
+    
+    text-align: center;
+    font-size: 10px;
+  }
+  .home1 h1{
+    font-size: 20px;
+  }
+  .home1 p input{
+    font-size: 10px;
+    padding: 3px 5px; 
+  }
+  .home1 button {
+    font-size: 15px;
+  }
+}
+
+
+
+
