@@ -1,0 +1,1 @@
+web: gunicorn lofi_serv:app
