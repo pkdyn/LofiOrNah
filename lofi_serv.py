@@ -68,9 +68,9 @@ def predict():
 
     predict=predict_single(samp, dv, rf)
     if predict >= 0.5:
-        predict_string = "Yes, it's lofi: " + str(round(predict*100)) + "%"
+        predict_string = "yes it's lofi: " + str(round(predict*100)) + "%"
     else:
-        predict_string = "Nyet, it's not lofi"
+        predict_string = "nyet it's not lofi"
     
     prediction = {'prediction_key': predict_string, 'valid_link': is_valid}
     return(render_template('show-prediction.html',prediction=prediction))

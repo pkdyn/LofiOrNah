@@ -1,49 +1,85 @@
 <!DOCTYPE html> 
 <head> 
 	<title> 
-		Lo-fi Result 
+	Lofi Prediction
 	</title> 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!--<link rel="stylesheet" href="{{ url_for('static', filename='css/home1.css') }}">-->
-	<link rel="stylesheet" type="text/css" href="/static/css/home1.css">
-	<link rel="icon" href="/static/img/favicon.ico" type="image/x-icon" >
-</head> 
-
-<body style="margin:0;"> 
-<!-- display the prediction  -->
-<div class="home">
-
-	<img src="/static/img/back.jpg" style="width:100%; height: 100vh;">
-
-	<div class="home1" >
-	<h1 style="color: mediumspringgreen;" > 
+	<link rel="icon" href="/static/img/song-96.ico" type="image/x-icon" >
+	<style>
+		@font-face {
+		font-family: 'LofiLifeStyle';
+		src: local('LofiLifeStyle'), url(static/fonts/lofi-Lifestyle.ttf) format('truetype');
+		}
+		body {
+  		background-size: 1275px 564px;}
+		.button
+		{
+		background-color: #f52e95;
+		padding: 9px 15px;
+		cursor: pointer;
+		border:none;
+		font-size: 20px;
+		text-shadow: 0px 1px 0px #000;
+		font-family: 'LofiLifeStyle';
+		border-radius:13px;
+		a {
+            color: #ffffff;
+            text-decoration: none;
+			font-family: 'LofiLifeStyle';
+        }
+		} 
+		.button:hover{
+    	background-color:#df3eda;
+		} 
+		#pred-text{
+		font-family: 'LofiLifeStyle';
+		font-size: 69px;
+		font-weight: 900;
+		margin-top: 20px;
+		margin-bottom: -40px;
+		text-align: center;
+		} 
+		#pred-but{
+		text-align: center;
+		margin-top: -20px;
+		}   
 		
-	</h1>
-    <h1 style="color: mediumspringgreen"> 
+	</style>
+</head> 
+<body> 
+	<div class = "pred">
+	<div id="pred-text">
+    <p id = "res" style="color: #ffffff"> 
 		{{ prediction.prediction_key }}
-	</h1>
-         
-    <!--<form action="{{ url_for('home') }}">
-		<input type="submit" value="Get another prediction" style="font-size : 20px; width: 25%; height: 30px;"/>
-	</form>-->
-
-		 
-	
-	
-	<!-- button to invoke JS functions and link to show-prediction.html -->
-	<button style="color: mediumspringgreen; background:#ffffff;cursor: pointer;">
-	<a href="{{ url_for('home') }}" style="text-decoration: none;color: mediumspringgreen; ">Get another prediction</a>
+	</p>
+	</div>
+	<!-- button to invoke JS functions and link to home.html -->
+	<div id="pred-but">
+	<button class = "button">
+	<a href="{{ url_for('home') }}">Get another prediction</a>
 	</button>
-
-
-
-
-
-</div>
-<!-- link back to home.html for entering Spotify URL for another song  -->
-
-	
-</div>
+	</div>
+	</div>
+	<script>
+        var predictionKey = "{{ prediction.prediction_key }}";
+        if (predictionKey.includes("yes")) {
+            document.body.style.backgroundImage = "url('/static/img/lofi-res.jpg')";
+        } else if (predictionKey.includes("nyet")) {
+            document.body.style.backgroundImage = "url('/static/img/no-lofi-res.jpg')";
+        }
+		var predDiv = document.querySelector('.pred');
+    	if (predictionKey.includes("yes")) {
+        predDiv.style.display = 'flex';
+		predDiv.style.flexDirection = 'column';
+        predDiv.style.justifyContent = 'center';
+        predDiv.style.alignItems = 'center';
+    	} else if (predictionKey.includes("nyet")) {
+        predDiv.style.position = 'absolute';
+        predDiv.style.right = '20px';
+        predDiv.style.bottom = '20px';
+		predDiv.style.display = 'flex';
+		predDiv.style.flexDirection = 'column';
+    }
+    </script> 
 </body> 
-
 </html>					 
