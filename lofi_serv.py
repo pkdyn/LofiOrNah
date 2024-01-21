@@ -15,9 +15,9 @@ with open('lofi.bin', 'rb') as f_in:
 
 @app.route('/')
 def home():   
-    title_text = "Test title"
+    title_text = "This is a lofi predictor"
     title = {'titlename':title_text}
-    return render_template('home11.html',title=title)
+    return render_template('home.html',title=title)
 
 @app.route('/show-prediction/')
 def predict():
@@ -26,9 +26,20 @@ def predict():
     import spotipy
     from spotipy.oauth2 import SpotifyClientCredentials
 
+    import re
+
+    def validate_spotify_link(link):
+        pattern = r"^https:\/\/open\.spotify\.com\/track\/[A-Za-z0-9]+(\?si=[A-Za-z0-9]+)?$"
+        if re.match(pattern, link):
+            return True
+        else:
+            return False
+
     sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials( client_id=  "9f133c4fea4142498c182dc76383ce4d",
                                                             client_secret= "84511eaa3a0c4ef6aaf6350ec8ff4d1b"))
+
     sid = request.args.get('inp')
+    is_valid = validate_spotify_link(sid)
     
     tracks=[sid]
 
@@ -57,11 +68,11 @@ def predict():
 
     predict=predict_single(samp, dv, rf)
     if predict >= 0.5:
-        predict_string = "yes, it's lofi"
+        predict_string = "Yes, it's lofi: " + str(round(predict*100)) + "%"
     else:
-        predict_string = "nah, it's not lofi"
+        predict_string = "Nyet, it's not lofi"
     
-    prediction = {'prediction_key':predict_string}
+    prediction = {'prediction_key': predict_string, 'valid_link': is_valid}
     return(render_template('show-prediction.html',prediction=prediction))
     
 
